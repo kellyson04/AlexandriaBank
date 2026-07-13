@@ -1,7 +1,9 @@
 package dev.kellyson.alexandriabank.conta;
 
-public enum ContaStatus {
+public enum StatusConta {
 
-
+    ATIVA,
+    BLOQUEADA,
+    ENCERRADA
 
 }
