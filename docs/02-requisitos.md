@@ -7,22 +7,13 @@
 
 ## Funcionalidades do Cliente
 
-![img.png](img.png)
+![img_2.png](img_2.png)
 
 
 ## Funcionalidades do Administrador
 
-- Consultar clientes
-- Bloquear contas
-- Desbloquear contas
-- Consultar movimentações
-- Gerenciar cartões
+![img_3.png](img_3.png)
 
 ## Regras de negócio
 
-- Um CPF não pode possuir dois cadastros
-- Um e-mail não pode estar vinculado a dois usuários
-- O usuário não pode realizar Pix sem saldo suficiente
-- O valor do Pix deve ser maior que zero
-- Um cartão bloqueado não pode ser utilizado
-- O usuário só pode consultar sua própria conta
+![img.png](img.png)
