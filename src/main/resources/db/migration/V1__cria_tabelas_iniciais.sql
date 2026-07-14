@@ -38,7 +38,6 @@ CREATE TABLE tb_cartoes (
     numero VARCHAR(16) NOT NULL UNIQUE,
     nome_impresso VARCHAR(120) NOT NULL,
     data_validade DATE NOT NULL,
-    codigo_seguranca VARCHAR(255) NOT NULL,
     status VARCHAR(20) NOT NULL,
     data_solicitacao TIMESTAMP WITH TIME ZONE NOT NULL,
 

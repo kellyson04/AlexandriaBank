@@ -14,11 +14,10 @@ import java.time.LocalDate;
 @Table(name = "tb_cartoes")
 public class Cartao {
 
-    public Cartao(String numero, String nomeImpresso, LocalDate dataValidade, String codigoSeguranca, Conta conta) {
+    public Cartao(String numero, String nomeImpresso, LocalDate dataValidade, Conta conta) {
         this.numero = numero;
         this.nomeImpresso = nomeImpresso;
         this.dataValidade = dataValidade;
-        this.codigoSeguranca = codigoSeguranca;
         this.status = StatusCartao.ATIVO;
         this.conta = conta;
     }
@@ -39,9 +38,6 @@ public class Cartao {
 
     @Column(name = "data_validade", nullable = false)
     private LocalDate dataValidade;
-
-    @Column(name = "codigo_seguranca", nullable = false, length = 255)
-    private String codigoSeguranca;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
