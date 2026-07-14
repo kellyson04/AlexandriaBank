@@ -116,11 +116,11 @@ Solicita um novo cartão
 ↓
 Sistema verifica se a conta está ativa
 ↓
-Sistema verifica se já existe um cartão ou uma solicitação em andamento
+Sistema verifica se a conta já possui um cartão
 ↓
-Sistema registra a solicitação
+Sistema cria o cartão vinculado à conta
 ↓
-Sistema atualiza o status para "Em emissão"
+Sistema define o status do cartão como "Ativo"
 ↓
 Sistema confirma a solicitação
 
