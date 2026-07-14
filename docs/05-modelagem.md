@@ -6,6 +6,8 @@ No meu modelo, eu pensei primeiro em quais dados cada parte do sistema precisa g
 
 Como o projeto ainda é um MVP, tentei manter apenas os dados mais importantes e evitar detalhes que ainda não são necessários.
 
+![img_4.png](img_4.png)
+
 ## Cliente
 
 Para o cliente, pensei nos dados necessários para identificar a pessoa e permitir o acesso ao sistema.
@@ -88,11 +90,24 @@ Para o cartão, pensei nos dados necessários para identificar o cartão e contr
 - O cartão deve pertencer a uma conta.
 - Neste MVP, cada conta terá apenas um cartão.
 - O número do cartão deve ser único.
-- Quando o cartão for solicitado, ele terá um status inicial.
+- Quando o cartão for solicitado, ele será criado com o status ATIVO.
 - Quando for bloqueado, o status deve ser alterado.
 
 ## Relacionamentos
 
 No meu modelo, pensei nesta relação:
 
-![img_1.png](img_1.png)
+- Um cliente possui exatamente uma conta.
+- Uma conta pertence a exatamente um cliente.
+- Uma conta pode não possuir nenhuma transação ou possuir várias transações.
+- Cada transação pertence a exatamente uma conta.
+- Uma conta pode não possuir cartão ou possuir apenas um cartão.
+- Cada cartão pertence a exatamente uma conta.
+
+### Cardinalidades
+
+- Cliente `1` — `1` Conta
+- Conta `1` — `0..N` Transações
+- Conta `1` — `0..1` Cartão
+
+
