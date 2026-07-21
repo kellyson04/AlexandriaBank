@@ -6,7 +6,7 @@ No meu modelo, eu pensei primeiro em quais dados cada parte do sistema precisa g
 
 Como o projeto ainda é um MVP, tentei manter apenas os dados mais importantes e evitar detalhes que ainda não são necessários.
 
-![img_4.png](img_4.png)
+![img_1.png](img_1.png)
 
 ## Cliente
 
