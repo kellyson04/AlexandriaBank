@@ -9,7 +9,6 @@ import dev.kellyson.alexandriabank.exception.ResourceNotFoundException;
 import dev.kellyson.alexandriabank.usuario.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
@@ -25,7 +24,6 @@ public class CartaoService {
     private final CartaoRepository cartaoRepository;
     private final ContaRepository contaRepository;
 
-    @Transactional
     public void solicitarCartao(Usuario usuario) {
         Conta conta = contaRepository.findByUsuarioId(usuario.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Conta nao encontrada"));
@@ -48,20 +46,22 @@ public class CartaoService {
         cartaoRepository.save(cartao);
     }
 
-    @Transactional
     public void bloquearCartao(Usuario usuario) {
         Cartao cartao = cartaoRepository.findByContaUsuarioId(usuario.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Cartao nao encontrado"));
 
         cartao.bloquear();
+
+        cartaoRepository.save(cartao);
     }
 
-    @Transactional
     public void desbloquearCartao(Usuario usuario) {
         Cartao cartao = cartaoRepository.findByContaUsuarioId(usuario.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Cartao nao encontrado"));
 
         cartao.desbloquear();
+
+        cartaoRepository.save(cartao);
     }
 
     private String gerarNumeroUnico() {
