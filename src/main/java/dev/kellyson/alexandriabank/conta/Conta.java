@@ -1,6 +1,6 @@
 package dev.kellyson.alexandriabank.conta;
 
-import dev.kellyson.alexandriabank.cliente.Cliente;
+import dev.kellyson.alexandriabank.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +14,8 @@ import java.time.Instant;
 @Table(name = "tb_contas")
 public class Conta {
 
-    public Conta(Cliente clienteId) {
-        this.cliente = clienteId;
+    public Conta(Usuario usuario) {
+        this.usuario = usuario;
         this.saldo = BigDecimal.ZERO;
         this.status = StatusConta.ATIVA;
     }
@@ -25,8 +25,8 @@ public class Conta {
     private Long id;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "cliente_id",nullable = false,unique = true)
-    private Cliente cliente;
+    @JoinColumn(name = "usuario_id", nullable = false, unique = true)
+    private Usuario usuario;
 
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal saldo;
