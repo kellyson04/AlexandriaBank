@@ -51,4 +51,20 @@ public class Cartao {
         this.dataSolicitacao = Instant.now();
     }
 
+    public void bloquear() {
+        if (this.status == StatusCartao.BLOQUEADO) {
+            throw new IllegalStateException("O cartao ja esta bloqueado");
+        }
+
+        this.status = StatusCartao.BLOQUEADO;
+    }
+
+    public void desbloquear() {
+        if (this.status == StatusCartao.ATIVO) {
+            throw new IllegalStateException("O cartao ja esta ativo");
+        }
+
+        this.status = StatusCartao.ATIVO;
+    }
+
 }
