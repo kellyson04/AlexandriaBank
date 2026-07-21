@@ -1,5 +1,6 @@
 package dev.kellyson.alexandriabank.transacao;
 
+import dev.kellyson.alexandriabank.cartao.Cartao;
 import dev.kellyson.alexandriabank.conta.Conta;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -14,11 +15,13 @@ import java.time.Instant;
 @Table(name = "tb_transacoes")
 public class Transacao {
 
-    public Transacao(BigDecimal valor, TipoTransacao tipo, String descricao, Conta conta) {
-        this.valor = valor;
-        this.tipo = tipo;
-        this.descricao = descricao;
+    public Transacao(Conta conta, BigDecimal valor, NaturezaTransacao natureza,
+                     TipoOperacao tipoOperacao, String descricao) {
         this.conta = conta;
+        this.valor = valor;
+        this.natureza = natureza;
+        this.tipoOperacao = tipoOperacao;
+        this.descricao = descricao;
     }
 
     @Id
@@ -29,12 +32,20 @@ public class Transacao {
     @JoinColumn(name = "conta_id", nullable = false)
     private Conta conta;
 
+    @ManyToOne
+    @JoinColumn(name = "cartao_id")
+    private Cartao cartao;
+
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal valor;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private TipoTransacao tipo;
+    private NaturezaTransacao natureza;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_operacao", nullable = false, length = 30)
+    private TipoOperacao tipoOperacao;
 
     @Column(nullable = false)
     private Instant data;
