@@ -7,13 +7,13 @@
 
 ## Funcionalidades do Cliente
 
-![img_2.png](img_2.png)
+![Requisitos funcionais do cliente](requisitos-cliente.png)
 
 
 ## Funcionalidades do Administrador
 
-![img_3.png](img_3.png)
+![Requisitos funcionais do administrador](requisitos-administrador.png)
 
 ## Regras de negócio
 
-![img.png](img.png)
+![Regras de negócio](regras-negocio.png)
