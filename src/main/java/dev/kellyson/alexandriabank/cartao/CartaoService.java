@@ -3,6 +3,9 @@ package dev.kellyson.alexandriabank.cartao;
 import dev.kellyson.alexandriabank.conta.Conta;
 import dev.kellyson.alexandriabank.conta.ContaRepository;
 import dev.kellyson.alexandriabank.conta.StatusConta;
+import dev.kellyson.alexandriabank.exception.BusinessRuleException;
+import dev.kellyson.alexandriabank.exception.ConflictException;
+import dev.kellyson.alexandriabank.exception.ResourceNotFoundException;
 import dev.kellyson.alexandriabank.usuario.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,14 +28,14 @@ public class CartaoService {
     @Transactional
     public void solicitarCartao(Usuario usuario) {
         Conta conta = contaRepository.findByUsuarioId(usuario.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Conta nao encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta nao encontrada"));
 
         if (conta.getStatus() != StatusConta.ATIVA) {
-            throw new IllegalStateException("A conta precisa estar ativa para solicitar um cartao");
+            throw new BusinessRuleException("A conta precisa estar ativa para solicitar um cartao");
         }
 
         if (cartaoRepository.existsByContaId(conta.getId())) {
-            throw new IllegalStateException("A conta ja possui um cartao");
+            throw new ConflictException("A conta ja possui um cartao");
         }
 
         Cartao cartao = new Cartao(
@@ -48,7 +51,7 @@ public class CartaoService {
     @Transactional
     public void bloquearCartao(Usuario usuario) {
         Cartao cartao = cartaoRepository.findByContaUsuarioId(usuario.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Cartao nao encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Cartao nao encontrado"));
 
         cartao.bloquear();
     }
@@ -56,7 +59,7 @@ public class CartaoService {
     @Transactional
     public void desbloquearCartao(Usuario usuario) {
         Cartao cartao = cartaoRepository.findByContaUsuarioId(usuario.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Cartao nao encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Cartao nao encontrado"));
 
         cartao.desbloquear();
     }

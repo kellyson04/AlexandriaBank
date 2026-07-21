@@ -3,6 +3,7 @@ package dev.kellyson.alexandriabank.cliente;
 import dev.kellyson.alexandriabank.cliente.dto.ClienteCriadoResponse;
 import dev.kellyson.alexandriabank.cliente.dto.CriarClienteRequest;
 import dev.kellyson.alexandriabank.conta.ContaService;
+import dev.kellyson.alexandriabank.exception.ConflictException;
 import dev.kellyson.alexandriabank.usuario.PerfilUsuario;
 import dev.kellyson.alexandriabank.usuario.Usuario;
 import dev.kellyson.alexandriabank.usuario.UsuarioRepository;
@@ -33,11 +34,11 @@ public class ClienteService {
         );
 
         if (usuarioRepository.existsByCpf(novoCliente.getCpf())) {
-            throw new IllegalArgumentException("CPF já cadastrado");
+            throw new ConflictException("CPF já cadastrado");
         }
 
         if (usuarioRepository.existsByEmail(novoCliente.getEmail())) {
-            throw new IllegalArgumentException("Email já cadastrado");
+            throw new ConflictException("Email já cadastrado");
         }
 
         usuarioRepository.save(novoCliente);

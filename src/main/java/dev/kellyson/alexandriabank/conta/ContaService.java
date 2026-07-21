@@ -2,6 +2,7 @@ package dev.kellyson.alexandriabank.conta;
 
 import dev.kellyson.alexandriabank.conta.dto.AporteSimuladoRequest;
 import dev.kellyson.alexandriabank.conta.dto.SaldoResponse;
+import dev.kellyson.alexandriabank.exception.ResourceNotFoundException;
 import dev.kellyson.alexandriabank.transacao.NaturezaTransacao;
 import dev.kellyson.alexandriabank.transacao.TipoOperacao;
 import dev.kellyson.alexandriabank.transacao.TransacaoService;
@@ -27,7 +28,7 @@ public class ContaService {
 
     public SaldoResponse consultarSaldo(Usuario usuario) {
         Conta conta = contaRepository.findByUsuarioId(usuario.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Conta não encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta não encontrada"));
 
         return new SaldoResponse(conta.getSaldo());
     }
@@ -35,7 +36,7 @@ public class ContaService {
     @Transactional
     public void realizarAporteSimulado(Usuario usuario, AporteSimuladoRequest request) {
         Conta conta = contaRepository.findByUsuarioId(usuario.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Conta não encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta não encontrada"));
 
         conta.creditar(request.valor());
 

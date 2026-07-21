@@ -1,6 +1,8 @@
 package dev.kellyson.alexandriabank.conta;
 
 import dev.kellyson.alexandriabank.usuario.Usuario;
+import dev.kellyson.alexandriabank.exception.BadRequestException;
+import dev.kellyson.alexandriabank.exception.BusinessRuleException;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,15 +47,15 @@ public class Conta {
 
     public void debitar(BigDecimal valor) {
         if (valor == null || valor.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Valor de débito inválido.");
+            throw new BadRequestException("Valor de débito inválido.");
         }
 
         if (this.status != StatusConta.ATIVA) {
-            throw new IllegalStateException("Não é possível debitar de uma conta que não está ativa.");
+            throw new BusinessRuleException("Não é possível debitar de uma conta que não está ativa.");
         }
 
         if (this.saldo.compareTo(valor) < 0) {
-            throw new IllegalStateException("Saldo insuficiente para débito.");
+            throw new BusinessRuleException("Saldo insuficiente para débito.");
         }
 
         this.saldo = this.saldo.subtract(valor);
@@ -61,11 +63,11 @@ public class Conta {
 
     public void creditar(BigDecimal valor) {
         if (valor == null || valor.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Valor de débito inválido.");
+            throw new BadRequestException("Valor de crédito inválido.");
         }
 
         if (this.status != StatusConta.ATIVA) {
-            throw new IllegalStateException("Não é possível debitar de uma conta que não está ativa.");
+            throw new BusinessRuleException("Não é possível creditar em uma conta que não está ativa.");
         }
 
         this.saldo = saldo.add(valor);

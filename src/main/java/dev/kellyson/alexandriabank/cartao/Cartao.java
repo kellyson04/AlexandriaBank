@@ -1,6 +1,7 @@
 package dev.kellyson.alexandriabank.cartao;
 
 import dev.kellyson.alexandriabank.conta.Conta;
+import dev.kellyson.alexandriabank.exception.ConflictException;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,7 +54,7 @@ public class Cartao {
 
     public void bloquear() {
         if (this.status == StatusCartao.BLOQUEADO) {
-            throw new IllegalStateException("O cartao ja esta bloqueado");
+            throw new ConflictException("O cartao ja esta bloqueado");
         }
 
         this.status = StatusCartao.BLOQUEADO;
@@ -61,7 +62,7 @@ public class Cartao {
 
     public void desbloquear() {
         if (this.status == StatusCartao.ATIVO) {
-            throw new IllegalStateException("O cartao ja esta ativo");
+            throw new ConflictException("O cartao ja esta ativo");
         }
 
         this.status = StatusCartao.ATIVO;

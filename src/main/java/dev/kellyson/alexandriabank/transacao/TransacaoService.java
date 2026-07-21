@@ -2,6 +2,8 @@ package dev.kellyson.alexandriabank.transacao;
 
 import dev.kellyson.alexandriabank.conta.Conta;
 import dev.kellyson.alexandriabank.conta.ContaRepository;
+import dev.kellyson.alexandriabank.exception.BadRequestException;
+import dev.kellyson.alexandriabank.exception.ResourceNotFoundException;
 import dev.kellyson.alexandriabank.transacao.dto.ItemExtratoResponse;
 import dev.kellyson.alexandriabank.usuario.Usuario;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +33,7 @@ public class TransacaoService {
 
     public List<ItemExtratoResponse> consultarExtrato(Usuario usuario) {
         Conta conta = contaRepository.findByUsuarioId(usuario.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Conta nao encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta nao encontrada"));
 
         return transacaoRepository.findAllByContaIdOrderByDataDesc(conta.getId())
                 .stream()
@@ -42,14 +44,14 @@ public class TransacaoService {
     @Transactional
     public void realizarPix(Usuario usuarioPagador, Long idContaDoUsuarioRecebedor, BigDecimal valor) {
         Conta contaDoUsuarioPagador = contaRepository.findByUsuarioId(usuarioPagador.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Conta do usuário pagador não encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta do usuário pagador não encontrada"));
 
         if (contaDoUsuarioPagador.getId().equals(idContaDoUsuarioRecebedor)) {
-            throw new IllegalArgumentException("Nao e possivel realizar um PIX para a mesma conta.");
+            throw new BadRequestException("Nao e possivel realizar um PIX para a mesma conta.");
         }
 
         Conta contaDoUsuarioRecebedor = contaRepository.findById(idContaDoUsuarioRecebedor)
-                .orElseThrow(() -> new IllegalArgumentException("Conta do usuário recebedor não encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta do usuário recebedor não encontrada"));
 
         contaDoUsuarioPagador.debitar(valor);
         contaDoUsuarioRecebedor.creditar(valor);

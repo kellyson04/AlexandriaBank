@@ -2,6 +2,7 @@ package dev.kellyson.alexandriabank.autenticacao;
 
 import dev.kellyson.alexandriabank.autenticacao.dto.LoginRequest;
 import dev.kellyson.alexandriabank.autenticacao.dto.LoginResponse;
+import dev.kellyson.alexandriabank.exception.UnauthorizedException;
 import dev.kellyson.alexandriabank.security.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,7 +29,7 @@ public class LoginService {
 
             return new LoginResponse(token);
         } catch (BadCredentialsException exception) {
-            throw new RuntimeException("Credenciais invalidas");
+            throw new UnauthorizedException("Credenciais invalidas");
         }
     }
 }
