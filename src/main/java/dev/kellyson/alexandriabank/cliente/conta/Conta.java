@@ -1,4 +1,4 @@
-package dev.kellyson.alexandriabank.conta;
+package dev.kellyson.alexandriabank.cliente.conta;
 
 import dev.kellyson.alexandriabank.usuario.Usuario;
 import dev.kellyson.alexandriabank.exception.BadRequestException;

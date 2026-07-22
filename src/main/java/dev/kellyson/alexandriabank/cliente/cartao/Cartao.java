@@ -1,6 +1,6 @@
-package dev.kellyson.alexandriabank.cartao;
+package dev.kellyson.alexandriabank.cliente.cartao;
 
-import dev.kellyson.alexandriabank.conta.Conta;
+import dev.kellyson.alexandriabank.cliente.conta.Conta;
 import dev.kellyson.alexandriabank.exception.ConflictException;
 import jakarta.persistence.*;
 import lombok.Getter;

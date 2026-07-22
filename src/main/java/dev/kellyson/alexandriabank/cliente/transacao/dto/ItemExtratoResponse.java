@@ -1,8 +1,8 @@
-package dev.kellyson.alexandriabank.transacao.dto;
+package dev.kellyson.alexandriabank.cliente.transacao.dto;
 
-import dev.kellyson.alexandriabank.transacao.NaturezaTransacao;
-import dev.kellyson.alexandriabank.transacao.TipoOperacao;
-import dev.kellyson.alexandriabank.transacao.Transacao;
+import dev.kellyson.alexandriabank.cliente.transacao.NaturezaTransacao;
+import dev.kellyson.alexandriabank.cliente.transacao.TipoOperacao;
+import dev.kellyson.alexandriabank.cliente.transacao.Transacao;
 
 import java.math.BigDecimal;
 import java.time.Instant;

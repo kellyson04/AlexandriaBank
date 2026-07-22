@@ -2,7 +2,7 @@ package dev.kellyson.alexandriabank.cliente;
 
 import dev.kellyson.alexandriabank.cliente.dto.ClienteCriadoResponse;
 import dev.kellyson.alexandriabank.cliente.dto.CriarClienteRequest;
-import dev.kellyson.alexandriabank.conta.ContaService;
+import dev.kellyson.alexandriabank.cliente.conta.ContaService;
 import dev.kellyson.alexandriabank.exception.ConflictException;
 import dev.kellyson.alexandriabank.usuario.PerfilUsuario;
 import dev.kellyson.alexandriabank.usuario.Usuario;

@@ -1,4 +1,4 @@
-package dev.kellyson.alexandriabank.cartao;
+package dev.kellyson.alexandriabank.cliente.cartao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

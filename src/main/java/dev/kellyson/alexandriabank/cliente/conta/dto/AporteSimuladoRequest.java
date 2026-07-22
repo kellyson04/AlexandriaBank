@@ -1,4 +1,4 @@
-package dev.kellyson.alexandriabank.conta.dto;
+package dev.kellyson.alexandriabank.cliente.conta.dto;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;

@@ -1,4 +1,4 @@
-package dev.kellyson.alexandriabank.cartao;
+package dev.kellyson.alexandriabank.cliente.cartao;
 
 public enum StatusCartao {
 

@@ -1,10 +1,10 @@
-package dev.kellyson.alexandriabank.transacao;
+package dev.kellyson.alexandriabank.cliente.transacao;
 
-import dev.kellyson.alexandriabank.conta.Conta;
-import dev.kellyson.alexandriabank.conta.ContaRepository;
+import dev.kellyson.alexandriabank.cliente.conta.Conta;
+import dev.kellyson.alexandriabank.cliente.conta.ContaRepository;
 import dev.kellyson.alexandriabank.exception.BadRequestException;
 import dev.kellyson.alexandriabank.exception.ResourceNotFoundException;
-import dev.kellyson.alexandriabank.transacao.dto.ItemExtratoResponse;
+import dev.kellyson.alexandriabank.cliente.transacao.dto.ItemExtratoResponse;
 import dev.kellyson.alexandriabank.usuario.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,11 +31,18 @@ public class TransacaoService {
     }
 
 
-    public List<ItemExtratoResponse> consultarExtrato(Usuario usuario) {
+    public List<ItemExtratoResponse> consultarExtratoConta(Usuario usuario) {
         Conta conta = contaRepository.findByUsuarioId(usuario.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Conta nao encontrada"));
 
         return transacaoRepository.findAllByContaIdOrderByDataDesc(conta.getId())
+                .stream()
+                .map(ItemExtratoResponse::from)
+                .toList();
+    }
+
+    public List<ItemExtratoResponse> consultarExtratoCartao(Long cartaoId) {
+        return transacaoRepository.findAllByCartaoIdOrderByDataDesc(cartaoId)
                 .stream()
                 .map(ItemExtratoResponse::from)
                 .toList();

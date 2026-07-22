@@ -1,7 +1,7 @@
-package dev.kellyson.alexandriabank.transacao;
+package dev.kellyson.alexandriabank.cliente.transacao;
 
-import dev.kellyson.alexandriabank.cartao.Cartao;
-import dev.kellyson.alexandriabank.conta.Conta;
+import dev.kellyson.alexandriabank.cliente.cartao.Cartao;
+import dev.kellyson.alexandriabank.cliente.conta.Conta;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

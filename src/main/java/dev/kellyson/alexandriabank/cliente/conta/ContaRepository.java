@@ -1,4 +1,4 @@
-package dev.kellyson.alexandriabank.conta;
+package dev.kellyson.alexandriabank.cliente.conta;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

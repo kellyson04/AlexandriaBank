@@ -1,17 +1,19 @@
-package dev.kellyson.alexandriabank.conta;
+package dev.kellyson.alexandriabank.cliente.conta;
 
-import dev.kellyson.alexandriabank.conta.dto.AporteSimuladoRequest;
-import dev.kellyson.alexandriabank.conta.dto.SaldoResponse;
+import dev.kellyson.alexandriabank.cliente.conta.dto.AporteSimuladoRequest;
+import dev.kellyson.alexandriabank.cliente.conta.dto.SaldoResponse;
 import dev.kellyson.alexandriabank.exception.ResourceNotFoundException;
-import dev.kellyson.alexandriabank.transacao.NaturezaTransacao;
-import dev.kellyson.alexandriabank.transacao.TipoOperacao;
-import dev.kellyson.alexandriabank.transacao.TransacaoService;
+import dev.kellyson.alexandriabank.cliente.transacao.NaturezaTransacao;
+import dev.kellyson.alexandriabank.cliente.transacao.TipoOperacao;
+import dev.kellyson.alexandriabank.cliente.transacao.TransacaoService;
+import dev.kellyson.alexandriabank.cliente.transacao.dto.ItemExtratoResponse;
 import dev.kellyson.alexandriabank.usuario.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +33,10 @@ public class ContaService {
                 .orElseThrow(() -> new ResourceNotFoundException("Conta não encontrada"));
 
         return new SaldoResponse(conta.getSaldo());
+    }
+
+    public List<ItemExtratoResponse> consultarExtrato(Usuario usuario) {
+        return transacaoService.consultarExtratoConta(usuario);
     }
 
     @Transactional

@@ -1,5 +1,6 @@
 package dev.kellyson.alexandriabank.conta;
 
+import dev.kellyson.alexandriabank.cliente.conta.Conta;
 import dev.kellyson.alexandriabank.usuario.PerfilUsuario;
 import dev.kellyson.alexandriabank.usuario.Usuario;
 import org.junit.jupiter.api.Test;

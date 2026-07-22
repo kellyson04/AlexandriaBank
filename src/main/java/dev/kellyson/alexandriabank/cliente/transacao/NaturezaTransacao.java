@@ -1,4 +1,4 @@
-package dev.kellyson.alexandriabank.transacao;
+package dev.kellyson.alexandriabank.cliente.transacao;
 
 public enum NaturezaTransacao {
     ENTRADA,

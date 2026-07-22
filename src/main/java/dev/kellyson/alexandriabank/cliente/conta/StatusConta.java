@@ -1,4 +1,4 @@
-package dev.kellyson.alexandriabank.conta;
+package dev.kellyson.alexandriabank.cliente.conta;
 
 public enum StatusConta {
 
