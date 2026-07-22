@@ -8,6 +8,10 @@ A proposta é praticar como um sistema real começa a ser modelado e evolui: ent
 
 Escolhi o contexto bancário para experimentar esses conceitos em um domínio que exige atenção a segurança, autorização, estados, movimentações financeiras e consistência dos dados.
 
+## Swagger
+
+![Swagger da Alexandria Bank](swagger.png)
+
 ## Documentação do processo
 
 Os materiais usados antes e durante a implementação estão na pasta [`docs`](docs):
