@@ -1,5 +1,6 @@
 package dev.kellyson.alexandriabank.transacao;
 
+import dev.kellyson.alexandriabank.doc.TransacaoControllerDoc;
 import dev.kellyson.alexandriabank.transacao.dto.ItemExtratoResponse;
 import dev.kellyson.alexandriabank.transacao.dto.RealizarPixRequest;
 import dev.kellyson.alexandriabank.usuario.Usuario;
@@ -16,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/contas")
+@RequestMapping("/transacoes")
 @RequiredArgsConstructor
-public class TransacaoController {
+public class TransacaoController implements TransacaoControllerDoc {
 
     private final TransacaoService transacaoService;
 

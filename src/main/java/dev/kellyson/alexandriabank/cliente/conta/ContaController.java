@@ -2,6 +2,7 @@ package dev.kellyson.alexandriabank.conta;
 
 import dev.kellyson.alexandriabank.conta.dto.AporteSimuladoRequest;
 import dev.kellyson.alexandriabank.conta.dto.SaldoResponse;
+import dev.kellyson.alexandriabank.doc.ContaControllerDoc;
 import dev.kellyson.alexandriabank.usuario.Usuario;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/contas")
 @RequiredArgsConstructor
-public class ContaController {
+public class ContaController implements ContaControllerDoc {
 
     private final ContaService contaService;
 

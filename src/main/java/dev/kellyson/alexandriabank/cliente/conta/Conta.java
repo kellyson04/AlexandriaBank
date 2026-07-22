@@ -3,6 +3,7 @@ package dev.kellyson.alexandriabank.conta;
 import dev.kellyson.alexandriabank.usuario.Usuario;
 import dev.kellyson.alexandriabank.exception.BadRequestException;
 import dev.kellyson.alexandriabank.exception.BusinessRuleException;
+import dev.kellyson.alexandriabank.exception.ConflictException;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -71,6 +72,30 @@ public class Conta {
         }
 
         this.saldo = saldo.add(valor);
+    }
+
+    public void bloquear() {
+        if (this.status == StatusConta.BLOQUEADA) {
+            throw new ConflictException("A conta ja esta bloqueada");
+        }
+
+        if (this.status == StatusConta.ENCERRADA) {
+            throw new BusinessRuleException("Nao e possivel bloquear uma conta encerrada");
+        }
+
+        this.status = StatusConta.BLOQUEADA;
+    }
+
+    public void desbloquear() {
+        if (this.status == StatusConta.ATIVA) {
+            throw new ConflictException("A conta ja esta ativa");
+        }
+
+        if (this.status == StatusConta.ENCERRADA) {
+            throw new BusinessRuleException("Nao e possivel desbloquear uma conta encerrada");
+        }
+
+        this.status = StatusConta.ATIVA;
     }
 
 }

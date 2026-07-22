@@ -1,5 +1,6 @@
 package dev.kellyson.alexandriabank.cartao;
 
+import dev.kellyson.alexandriabank.doc.CartaoControllerDoc;
 import dev.kellyson.alexandriabank.usuario.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/contas/cartao")
 @RequiredArgsConstructor
-public class CartaoController {
+public class CartaoController implements CartaoControllerDoc {
 
     private final CartaoService cartaoService;
 
