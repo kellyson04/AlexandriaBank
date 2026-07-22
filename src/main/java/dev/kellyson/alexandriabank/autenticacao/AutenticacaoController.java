@@ -2,6 +2,7 @@ package dev.kellyson.alexandriabank.autenticacao;
 
 import dev.kellyson.alexandriabank.autenticacao.dto.LoginRequest;
 import dev.kellyson.alexandriabank.autenticacao.dto.LoginResponse;
+import dev.kellyson.alexandriabank.doc.AutenticacaoControllerDoc;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/autenticacao")
 @RequiredArgsConstructor
-public class AutenticacaoController {
+public class AutenticacaoController implements AutenticacaoControllerDoc {
 
     private final LoginService loginService;
 
