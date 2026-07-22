@@ -31,8 +31,15 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(
+                                "/swagger-ui.html",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**"
+                        ).permitAll()
                         .requestMatchers(HttpMethod.POST, "/clientes").permitAll()
                         .requestMatchers(HttpMethod.POST, "/autenticacao/login").permitAll()
+                        .requestMatchers("/administradores/**").hasRole("ADMIN")
+                        .requestMatchers("/contas/**", "/transacoes/**").hasRole("CLIENTE")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(filtroAutenticacaoJwt, UsernamePasswordAuthenticationFilter.class)
